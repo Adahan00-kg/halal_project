@@ -79,42 +79,42 @@ class Documents(models.Model):
     author = models.ForeignKey(PersonResponse,on_delete=models.CASCADE,related_name='documents')
     created_date = models.DateTimeField(auto_now_add=True)
 
-# from django.db import models
-# from user.models import UserProfile
-#
-#
-# class Question(models.Model):
-#     person = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
-#     text = models.TextField()
-#
-#     def __str__(self):
-#         return self.text
-#
-#
-# class Answer(models.Model):
-#     RESPONSE_CHOICES = [
-#         ('yes', 'Да'),
-#         ('in_progress', 'В процессе'),
-#         ('no', 'Нет')
-#     ]
-#
-#
-#     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-#     response = models.CharField(max_length=20, choices=RESPONSE_CHOICES)
-#
-#     def __str__(self):
-#         return f"{self.user.username} - {self.question} - {self.response}"
+from django.db import models
+from user.models import UserProfile
 
-#
-# class SurveyResult(models.Model):
-#     user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
-#     total_questions = models.IntegerField()
-#     yes_count = models.IntegerField()
-#     yes_percent = models.DecimalField(max_digits=5, decimal_places=2)
-#     in_progress_count = models.IntegerField()
-#     no_count = models.IntegerField()
-#     percentage = models.FloatField()
-#
-#     def __str__(self):
-#         return f"{self.user.username} - {self.percentage}% готовности"
+
+class Question(models.Model):
+    person = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+    text = models.TextField()
+
+    def __str__(self):
+        return self.text
+
+
+class Answer(models.Model):
+    RESPONSE_CHOICES = [
+        ('yes', 'Да'),
+        ('in_progress', 'В процессе'),
+        ('no', 'Нет')
+    ]
+
+
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    response = models.CharField(max_length=20, choices=RESPONSE_CHOICES)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.question} - {self.response}"
+
+
+class SurveyResult(models.Model):
+    user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    total_questions = models.IntegerField()
+    yes_count = models.IntegerField()
+    yes_percent = models.DecimalField(max_digits=5, decimal_places=2)
+    in_progress_count = models.IntegerField()
+    no_count = models.IntegerField()
+    percentage = models.FloatField()
+
+    def __str__(self):
+        return f"{self.user.username} - {self.percentage}% готовности"
