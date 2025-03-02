@@ -33,20 +33,21 @@ class DocCreateAPIView(generics.CreateAPIView):
     serializer_class = DocumentsCreateSerializer
 
 
+class NotesCreateAPIVIew(generics.CreateAPIView):
+    serializer_class = NotesCreateSerializer
 
 
+class NotesListAPIView(generics.ListAPIView):
+    queryset = Notes.objects.all()
+    serializer_class = NotesListSerializer
 
+class Training_materialsListAPIView(generics.ListAPIView):
+    queryset = Training_materials.objects.all()
+    serializer_class = Training_materialsSerializer
 
-
-
-
-
-
-
-
-
-
-
+class Training_materialsDetailAPIView(generics.RetrieveAPIView):
+    queryset = Training_materials.objects.all()
+    serializer_class = Training_materialsSerializer
 
 # from django.shortcuts import render
 # from rest_framework.viewsets import generics

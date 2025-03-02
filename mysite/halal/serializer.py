@@ -67,6 +67,24 @@ class DocumentsCreateSerializer(serializers.ModelSerializer):
         fields = ['doc','author']
 
 
+class NotesCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notes
+        fields= ['author','notes_title','status','date']
+
+
+class NotesListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notes
+        fields = ['notes_title','status','date']
+
+
+class Training_materialsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Training_materials
+        fields = ['materials_title','content']
+
+
 # from rest_framework import serializers
 # from .models import *
 # from user.serializers import UserProfileSerializer

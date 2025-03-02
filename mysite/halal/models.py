@@ -1,3 +1,5 @@
+from modulefinder import Module
+
 from django.db import models
 from user.models import UserProfile
 
@@ -78,6 +80,26 @@ class Documents(models.Model):
     doc = models.FileField(upload_to='documents',null=True,blank=True)
     author = models.ForeignKey(PersonResponse,on_delete=models.CASCADE,related_name='documents')
     created_date = models.DateTimeField(auto_now_add=True)
+
+
+class  Notes(models.Model):
+    NOTES_STATUS_CHOICES  =(
+        ('Завершено','Завершено'),
+        ('Отправлено','Отправлено'),
+        ('Запрошены данные','Запрошены данные'),
+        ('В процессе','В процессе'),
+        ('На рассмотрении','На рассмотрении')
+    )
+    notes_title = models.CharField(max_length=150)
+    status = models.CharField(max_length=25,choices=NOTES_STATUS_CHOICES,null=True,blank=True)
+    date = models.DateField()
+    author = models.ForeignKey(UserProfile,on_delete=models.CASCADE,related_name = 'notes')
+
+
+class Training_materials(models.Model):
+    materials_title = models.CharField(max_length=150)
+    content = models.FileField(upload_to='training_materials/')
+    created_date = models.DateField(auto_now_add=True)
 
 # from django.db import models
 # from user.models import UserProfile

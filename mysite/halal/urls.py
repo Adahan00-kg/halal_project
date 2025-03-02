@@ -18,7 +18,16 @@ urlpatterns = [
 
     path('survey_list/',SurveyListAPIView.as_view(),name = 'survey_list'),
 
-    path('doc_create/',DocCreateAPIView.as_view(),name = 'doc_creaet')
+    path('doc_create/',DocCreateAPIView.as_view(),name = 'doc_creaet'),
+
+    path('notes/',NotesListAPIView.as_view(),name = 'notes_list'),
+
+    path('notes_create/',NotesCreateAPIVIew.as_view(),name = 'notes_create'),
+
+    path('training_material/',Training_materialsListAPIView.as_view(),name = 'training_list'),
+
+    path('training_material/<int:pk>/', Training_materialsListAPIView.as_view(), name='training_list'),
+
 ]
 
 
