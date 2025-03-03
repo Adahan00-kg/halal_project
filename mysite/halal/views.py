@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.viewsets import generics
 
 from .serializer import *
+from .permissions import *
 
 class SurveyListAPIView(generics.ListAPIView):
     queryset = Survey.objects.all()
@@ -35,11 +36,14 @@ class DocCreateAPIView(generics.CreateAPIView):
 
 class NotesCreateAPIVIew(generics.CreateAPIView):
     serializer_class = NotesCreateSerializer
+    permission_classes = [CheckNotesOwner,permissions.IsAuthenticated]
 
 
 class NotesListAPIView(generics.ListAPIView):
     queryset = Notes.objects.all()
     serializer_class = NotesListSerializer
+    permission_classes = [CheckNotesOwner,permissions.IsAuthenticated]
+
 
 class Training_materialsListAPIView(generics.ListAPIView):
     queryset = Training_materials.objects.all()
